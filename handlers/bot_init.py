@@ -5,15 +5,13 @@ from telegram.ext import (
 from telegram.ext import (
     ConversationHandler,
     CallbackQueryHandler,
-    MessageHandler,
-    filters,
     PicklePersistence,
 )
 from config.cp_config import (
     TELEGRAM_TOKEN,
 )
 from config.logger import logger
-from config.states import MAIN
+from config.states import MAINMENU
 from handlers.common import start
 
 
@@ -29,11 +27,13 @@ def create_bot_app():
     logger.info("Запуск тг бота")
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
-        per_message=False,
         states={
-            MAIN: [
-                
-            ]
+            MAINMENU: [
+                CallbackQueryHandler(start, pattern="^subscribe$"),
+                CallbackQueryHandler(start, pattern="^info$"),
+                CallbackQueryHandler(start, pattern="^menu$"),
+                CallbackQueryHandler(start, pattern="^rfcard$"),
+            ],
         },
         fallbacks=[CommandHandler("start", start)],
         name="main_conversation",

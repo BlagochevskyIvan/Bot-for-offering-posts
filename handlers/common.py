@@ -1,23 +1,23 @@
 from telegram import (
     Update,
-    InlineKeyboardMarkup,
-    InlineKeyboardButton
 )
 from telegram.ext import (
     ContextTypes,
-    ConversationHandler,
 )
 
-from config.states import MAIN
+from db.user_crud import get_user, create_user
+from config.states import MAINMENU
+
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    context.user_data.clear()
-    context.chat_data.clear()
-
-    chat_id = update.effective_chat.id
+    user = await get_user(telegram_id=update.effective_user.id)
+    if not user:
+        user = await create_user(update.effective_user.id, update.effective_user.username)
+    telegram_user = update.effective_user
+    
 
     await context.bot.send_message(
-        chat_id=chat_id,
-        text="Привет, это бот предложки\nНапиши сюда свой пост и мы отправим его на модерацию"
-    )
-    return MAIN
+        chat_id=telegram_user.id,
+        text="Тестовый бот"
+        )
+    return MAINMENU

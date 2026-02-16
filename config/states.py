@@ -1,1 +1,1 @@
-MAIN = range(1)
+MAINMENU = range(1)

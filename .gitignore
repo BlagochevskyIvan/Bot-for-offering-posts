@@ -3,3 +3,7 @@ __pycache__
 *.db
 *.sql
 .vscode
+*.pyc
+bot_cache
+test.py
+test2.py
