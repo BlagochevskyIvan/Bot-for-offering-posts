@@ -13,19 +13,8 @@ from server.routers.common_router import router as common_router
 from handlers.bot_init import create_bot_app
 from telegram.ext import Application
 
-
-from db.database import engine, Base
-
-
-async def init_db():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-        await conn.commit()
-    logger.info('ВСЕ ТАБЛИЦЫ УСПЕШНО СОЗДАНЫ')
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await init_db()
     bot_app: Application = create_bot_app()
     app.state.bot_app = bot_app
 
