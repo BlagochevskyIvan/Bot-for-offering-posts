@@ -41,6 +41,4 @@ async def lifespan(app: FastAPI):
 def init_fastapi_app():
     app = FastAPI(lifespan=lifespan)
     app.include_router(common_router)
-    # app.include_router(api_router)
-    # app.include_router(payment_router)
     return app
