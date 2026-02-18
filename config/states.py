@@ -1,1 +1,1 @@
-MAINMENU = range(1)
+GET_POST = range(1)

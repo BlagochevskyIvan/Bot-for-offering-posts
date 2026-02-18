@@ -10,6 +10,7 @@ CP_PUBLIC_ID = os.getenv("CP_PUBLIC_ID")
 CP_SECRET_KEY = os.getenv("CP_SECRET_KEY")
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+ADMIN_ID = os.getenv("ADMIN_ID")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_PATH = BASE_DIR / "templates"
