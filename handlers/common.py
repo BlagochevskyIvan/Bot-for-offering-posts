@@ -25,9 +25,9 @@ async def get_post(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         chat_id=update.effective_user.id,
         text="Пост отправлен на модерацию админу"
         )
-    await context.bot.send_photo(
+    await context.bot.copy_message(
         chat_id=ADMIN_ID,
-        photo=message.photo,
-        text=message.text
+        from_chat_id=message.chat_id,
+        message_id=message.message_id
     )
     return GET_POST
